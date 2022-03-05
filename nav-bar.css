@@ -3,8 +3,21 @@
     src: url('GlacialIndifference-Regular.otf');
 }
 
+ul {
+    padding: 20px;
+    margin: 10px 10px 10px 250px;
+    list-style: none;
+}
+
+li {
+    float: left;
+}
+
 .topnav {
-    overflow: hidden;
+    /* overflow: hidden; */
+    overflow: auto;
+    width: 100%;
+
 }
   
 /* Style the links inside the navigation bar */
@@ -12,10 +25,13 @@
     float: left;
     color: black;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 50px;
     text-decoration: none;
     font-size: 17px;
     font-family: myFirstFont;
+
+    width: 100px;
+    display: block;
 }
 
 /* Change the color of links on hover */
@@ -28,4 +44,15 @@
 .topnav a.active {
     background-color: #adcc95;
     color: white;
+}
+
+.logo img {
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+#logo {
+    width: 200px;
+    height: auto;
 }
