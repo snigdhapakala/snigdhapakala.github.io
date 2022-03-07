@@ -1,0 +1,35 @@
+.slideshow {
+    width: 300px;
+    height: 300px;
+}
+
+.content {
+    text-align: center;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+
+@font-face {
+    font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+}
+
+p {
+    font-family: myFirstFont;
+}
+
+h1 {
+    font-family: myFirstFont;
+}
+
+h2 {
+    font-family: myFirstFont;
+}
+
+#mainImage {
+    background-size: cover;
+}
+
