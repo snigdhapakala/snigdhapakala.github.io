@@ -1,0 +1,176 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+}
+
+body{
+	font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+}
+
+ul {
+    padding: 20px;
+    margin: 10px 10px 10px 250px;
+    list-style: none;
+}
+
+li {
+    float: left;
+}
+
+.topnav {
+    /* overflow: hidden; */
+    overflow: auto;
+    width: 100%;
+
+}
+  
+/* Style the links inside the navigation bar */
+.headers {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: myFirstFont;
+
+    width: 180px;
+    display: block;
+}
+
+.socials {
+    float: left;
+    padding: 9px;
+}
+
+.topnav img {
+    width: 25px;
+    height: 25px;
+}
+
+.topnav input[type=text] {
+    width: 100px;
+    border: none;
+    padding: 10.7px;
+    font-size: 17px;
+  }
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #dcf0cc;
+    color: black;
+}
+  
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #adcc95;
+    color: white;
+}
+
+.logo img {
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+#logo {
+    width: 200px;
+    height: auto;
+}
+
+/*contact sheet*/
+
+h1{
+    text-align:center;
+}
+
+@font-face {
+    font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+}
+
+#picture{
+	float:left;	
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-right:40px;
+	margin-left:130px
+}
+
+#above-form{
+	margin-right:130px;
+	font-size:14pt;
+}
+
+#form{
+	margin-right:130px;
+	font-size:14pt;
+}
+
+#about{
+	clear:both;
+	margin-right:130px;
+	margin-left:130px;
+	padding-top:20px;
+}
+
+#about-text{
+	font-size:14pt;
+}
+
+#name1{
+	width:500px;
+	padding:4px;
+	font-size:14pt;	
+}
+
+#email1{
+	width:500px;
+	padding:4px;
+	font-size:14pt;	
+}
+
+#subject{
+	width:500px;
+	padding:4px;
+	font-size:14pt;	
+}
+
+#message{
+	width:500px;
+	padding:4px;
+	font-size:14pt;	
+}
+
+button{
+	font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+	background-color:#dcf0cc;
+	border:none;	
+	font-size:14pt;
+	width:70px;
+	height:50px;
+	border-radius:2px;
+	transition-duration:.2s;
+}
+
+button:hover{
+	background-color:#adcc95;
+}
+
+#reset1{	
+	font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+	background-color:#dcf0cc;
+	border:none;
+	font-size:14pt;
+	width:70px;
+	height:50px;
+	border-radius:2px;
+	transition-duration:.2s;
+}
+
+#reset1:hover{
+	background-color:#adcc95;
+}
