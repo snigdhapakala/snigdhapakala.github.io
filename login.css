@@ -174,3 +174,8 @@ button:hover{
 #reset1:hover{
 	background-color:#adcc95;
 }
+
+input {
+    display: block;
+	margin-bottom: 20px;
+}
