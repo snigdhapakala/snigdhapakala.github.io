@@ -7,11 +7,12 @@
    <meta charset="UTF-8">
    <meta name="description" content="Coding up the basics of our website's recommendations page">
    <meta name="author" content="Snigdha Pakala, Stuti Gupta, Lauren Perry, Manavi Shah">
+   <link rel="stylesheet" href="recommendations.css">
    <link rel="stylesheet" href="nav-bar.css">
 </head> 
 
 <body>
-   <div class = "logo"><img id = "logo" src="logo.png" alt="picture of logo" width="360" height="360"></div>
+   <div class = "logo"><a href="home.html"><img id = "logo" src="logo.png" alt="picture of logo" width="360" height="360"></a></div>
    <br><br><br>
    <div class="topnav">
       <ul>
@@ -27,5 +28,42 @@
          <li><input type="text" placeholder="Search.."></li>
       </ul>
    </div>
+
+   <h1 id = "header">Austin Top 10 Attractions</h1>
+   <div id = "top_ten">
+      <div class = "column">
+         <figure>
+            <img class = "attractions" src = "bats.jpeg" alt = "picture of bat bridge"/>
+            <figcaption id = "caption" ><b>Bat Watching</b> </br> You cannot call yourself a true Austin local if you haven't watched the evening bat show off Congress Ave!</figcaption>
+         </figure>
+      </div>
+      <div class = "column">
+         <figure>
+            <img class = "attractions" src = "sixth.jpg" alt = "picture of sixth street"/>
+            <figcaption id = "caption" > <b>6th Street </b></br> This is THE Nighttime entertainment spot of Austin. It has dive bars, restaurants, delicious food trucks, and lots of music!</figcaption>
+         </figure>
+      </div>
+      <div class = "column">
+         <figure>
+            <img class = "attractions" src = "barton.jpg" alt = "picture of barton springs"/>
+            <figcaption id = "caption" ><b>Barton Springs </b></br> If you are a nature person, this is the perfect daytime activity for you. Go swimming, hiking, or enjoy the recreational park!</figcaption>
+         </figure>
+      </div>
+   </div>
+
+   
+   <h2 id = "header">What kind of activities are you interested in?</h2>
+   <form id = "preferences" action="">
+      <div class = "activity_checkbox">
+         <label><input name = "activities[]" type = "checkbox" value = "outdoor" /> Outdoor Activities  </label></br>
+         <label><input name = "activities[]" type = "checkbox" value = "bar" /> Bar Hopping  </label></br>
+         <label><input name = "activities[]" type = "checkbox" value = "foodtrucks" /> Food Trucks </label></br>
+         <label><input name = "activities[]" type = "checkbox" value = "instagram" /> Instagram Spots </label></br>
+         <label><input name = "activities[]" type = "checkbox" value = "diningin" /> Dining In  </label>
+      </div>
+      <div>
+         <button id = "submit">Submit</button>
+      </div>
+   </form>
 </body>
 </html>

@@ -9,10 +9,6 @@ ul {
     list-style: none;
 }
 
-li {
-    float: left;
-}
-
 .topnav {
     /* overflow: hidden; */
     overflow: auto;
@@ -25,29 +21,30 @@ li {
     float: left;
     color: black;
     text-align: center;
-    padding: 14px 10px;
+    padding: 5px;
     text-decoration: none;
     font-size: 17px;
     font-family: myFirstFont;
 
-    width: 180px;
+    width: 14%;
     display: block;
 }
 
 .socials {
-    float: left;
-    padding: 9px;
+    float: right;
+    padding: 5px;
 }
 
 .topnav img {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 }
 
 .topnav input[type=text] {
-    width: 100px;
+    float: right;
+    width: 10%;
     border: none;
-    padding: 10.7px;
+    padding: 3px;
     font-size: 17px;
   }
 

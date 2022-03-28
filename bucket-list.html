@@ -8,10 +8,11 @@
    <meta name="description" content="Coding up the basics of our website's bucket list">
    <meta name="author" content="Snigdha Pakala, Stuti Gupta, Lauren Perry, Manavi Shah">
    <link rel="stylesheet" href="nav-bar.css">
+   <link rel="stylesheet" href="bucket-list.css">
 </head> 
 
 <body>
-   <div class = "logo"><img id = "logo" src="logo.png" alt="picture of logo" width="360" height="360"></div>
+   <div class = "logo"><a href="home.html"><img id = "logo" src="logo.png" alt="picture of logo" width="360" height="360"></a></div>
    <br><br><br>
    <div class="topnav">
       <ul>
@@ -27,5 +28,59 @@
          <li><input type="text" placeholder="Search.."></li>
       </ul>
    </div>
+
+   <div id="leftnav" style="font-size: 20px;">
+      <h1 style="text-align:center;">My List:</h1>
+      <p> <input class=list_inputs type="checkbox" id="item1" name="item1"checked> Item 1</p>
+      <p> <input class=list_inputs type="checkbox" id="item2" name="item2"> Item 2 </p>
+
+   </div>
+
+
+   <div id="content">
+      <h1 style = "text-align:center"> Build Your Bucket List</h1>
+      <div style="display:inline-block;">
+         <p><input type="text" id="textbox" placeholder=" Browse here.."></p>
+      </div>
+      <div style="display:inline-block;vertical-align:top;">
+         <img src="search.png" alt="pic of search icon" width=12% height=12% />
+         <p><input style = "font-family: myFirstFont" type = "button" class = "btns" id = "print_save" value = "Print or save your list" /></p>
+      </div>
+   </div>
+   <div id="middle">
+      <h1 style = "text-align:center"> Events of the Week! </h1>
+      <h2 style = "text-align:center"> The following is a list of upcoming events in Austin:</h2>
+      <table style="width:100%">
+        <!--  <tr> <td> 4 / 3 / 2022 </td>
+              <td> ABC Kite Fest - Zilker Park </td>
+         </tr> -->
+         <tr>
+            <th>Date/Time</th>
+
+            <th>Description</th>
+
+            <th>Location</th>        
+         </tr>
+
+         <tr>
+                      <td> 4/3/22 </td>
+
+                      <td>ABC Kite Fest: Every year, the nation's oldest kite festival features hundreds of kites across the Austin sky. This year, the festival is hosting a weekend showcase and contest.</td>
+
+                      <td>Zilker Park</td>
+         </tr>
+
+         <tr>
+                      <td> 4/8/22 </td>
+
+                      <td>Austin International Poetry Festival: Poets from around the world, country and all of Texas gather for four days of virtual performances, readings and workshops during the Austin International Poetry Festival. </td>
+
+                      <td>Various Locations, see <a href=https://www.aipf.org/>aipf.org</a> for more details.</td>
+         </tr>
+
+      </table>
+   </div>
+
 </body>
+
 </html>

@@ -1,0 +1,45 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+}
+
+#header {
+    font-family: myFirstFont;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    text-align: center;
+}
+
+.attractions {
+    width: 400px;
+    height: 300px;
+    border: 5px solid #555
+}
+
+.activity_checkbox {
+    margin-left: 15%;
+    font-size: 20px;
+    font-family: myFirstFont;
+}
+
+#preferences {
+    background-color: #adcc95;
+    margin-left: 40%;
+    margin-right: 40%
+}
+
+#submit {
+    font-family: myFirstFont;
+    margin-left: 37%;
+    margin-top: 7%;
+    font-size: 15px;
+}
+
+figcaption {
+    font-family: myFirstFont;
+}
