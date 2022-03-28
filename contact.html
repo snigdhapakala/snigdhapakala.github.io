@@ -7,7 +7,9 @@
    <meta charset="UTF-8">
    <meta name="description" content="Coding up the basics of our website's contact page">
    <meta name="author" content="Snigdha Pakala, Stuti Gupta, Lauren Perry, Manavi Shah">
+   <link rel="stylesheet" href="nav-bar.css">
    <link rel="stylesheet" href="contact.css">
+   <script src="contact.js" defer></script>
 </head> 
 
 <body>
@@ -16,7 +18,6 @@
    <div class="topnav">
       <ul>
          <li><a class = "headers" href="home.html">Home</a></li>
-         <li><a class = "headers" href="login.html">Login</a></li>
          <li><a class = "headers" href="recommendations.html">Recommendations</a></li>
          <li><a class = "headers" href="bucket-list.html">Bucket List</a></li>
          <li><a class = "active headers" href="contact.html">Contact</a></li>
@@ -31,7 +32,7 @@
 
 	<div id="main">
 	<p>
-	<img id="picture" src="austin_motel.jpg" alt="Picture of Austin motel sign" width=35% height=35%>
+	<img id="picture" src="austin_motel.jpg" alt="Picture of Austin motel sign" width=37% height=37%>
 	</p>
 	
 <p id="above-form">
@@ -39,22 +40,26 @@
 </p>
 
 <!--now onto the contact form, will need to add an action and stuff-->
-<div id="form>
-<form action = "">
+<div id="form">
+<form id="form1" action = "">
 	<label for="name1" style="font-size:14pt">Name:</label><br>
 	<input type="text" id="name1" name="name1"><br>
+	<div id="name_error"></div>
 
 	<label for="email1" style="font-size:14pt">Email:</label><br>
 	<input type="email" id="email1" name="email1"><br>
+	<div id="email_error"></div>
 
 	<label for="subject" style="font-size:14pt">Subject Line:</label><br>
 	<input type="text" id="subject" name="subject"><br>
+	<div id="subject_error"></div>
 
 	<label for="message" style="font-size:14pt">Your Message:</label><br>
 	<textarea name="message" id="message" rows="10" cols=30"></textarea><br>
+	<div id="message_error"></div>
 
-	<button>Send</button>
-	<input type="reset" id="reset1" value="Reset"/>
+	<button id="submit" onclick="return validation()">Send</button>
+	<input type="reset" id="reset1" onclick="reset_form()" value="Reset"/>
 	
 
 </form>
