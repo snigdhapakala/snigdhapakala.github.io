@@ -21,10 +21,6 @@
     border: 5px solid #555
 }
 
-/* .top_ten {
-    margin-right: 70px;
-} */
-
 .activity_checkbox {
     margin-left: 15%;
     font-size: 20px;
@@ -32,7 +28,7 @@
 }
 
 #preferences {
-    background-color: lightgrey;
+    background-color: #adcc95;
     margin-left: 40%;
     margin-right: 40%
 }
@@ -42,4 +38,8 @@
     margin-left: 37%;
     margin-top: 7%;
     font-size: 15px;
+}
+
+figcaption {
+    font-family: myFirstFont;
 }
