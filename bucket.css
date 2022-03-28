@@ -1,3 +1,11 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+}
+
+body {
+	font-family: myFirstFont;
+}
 #leftnav
 {
 	float: left;
@@ -72,6 +80,6 @@ table {
 }
 
 td,th {
-	text-align: center;}
+	text-align: center;
 }
 
