@@ -1,0 +1,98 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+}
+
+label {
+	font-family: myFirstFont;
+}
+
+#picture{
+	float:left;	
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-right:40px;
+	margin-left:130px
+}
+
+#above-form{
+	margin-right:130px;
+	font-size:14pt;
+}
+
+#form{
+	margin-right:130px;
+	font-size:14pt;
+}
+
+#about{
+	clear:both;
+	margin-right:130px;
+	margin-left:130px;
+	padding-top:20px;
+}
+
+#about-text{
+	font-size:14pt;
+}
+
+#name1{
+	width:500px;
+	padding:4px;
+	font-size:14pt;	
+}
+
+#email1{
+	width:500px;
+	padding:4px;
+	font-size:14pt;	
+}
+
+#subject{
+	width:500px;
+	padding:4px;
+	font-size:14pt;	
+}
+
+#message{
+	width:500px;
+	padding:4px;
+	font-size:14pt;	
+}
+
+button{
+	font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+	background-color:#dcf0cc;
+	border:none;	
+	font-size:14pt;
+	width:70px;
+	height:50px;
+	border-radius:2px;
+	transition-duration:.2s;
+}
+
+button:hover{
+	background-color:#adcc95;
+}
+
+#reset1{	
+	font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+	background-color:#dcf0cc;
+	border:none;
+	font-size:14pt;
+	width:70px;
+	height:50px;
+	border-radius:2px;
+	transition-duration:.2s;
+}
+
+#reset1:hover{
+	background-color:#adcc95;
+}
+
+input {
+    display: block;
+	margin-bottom: 20px;
+}
