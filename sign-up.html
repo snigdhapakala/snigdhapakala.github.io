@@ -9,6 +9,7 @@
    <meta name="author" content="Snigdha Pakala, Stuti Gupta, Lauren Perry, Manavi Shah">
    <link rel="stylesheet" href="nav-bar.css">
    <link rel="stylesheet" href="sign-up.css">
+   <script src="sign-up.js" defer></script>
 
 </head> 
 
@@ -39,19 +40,26 @@
 <div id="form">
 <form action = "">
 	<label for="email1" style="font-size:14pt">Email:</label><br>
-	<input type="email" id="email1" name="email1"><br>
+	<input type="email" id="email1" name="email1">
+	<div id="email_error"></div><br>
 
    <label for="password1" style="font-size:14pt">Password:</label><br>
-   <input type="password" id="password1" name="password1"><br>
+   <input type="password" id="password1" name="password1">	
+	<div id="password1_error"></div><br>
 
    <label for="password1" style="font-size:14pt">Repeat Password:</label><br>
-   <input type="password" id="password2" name="password2"><br>
+   <input type="password" id="password2" name="password2">
+	<div id="password2_error"></div><br>
 
-	<label><button>Register</button></label>
-   <label><i>already have an account? log in <a href="login.html">here</a></i></label>
+   <label id="have_account"><i>already have an account? log in <a href="login.html">here</a></i></label><br><br>
+	<label><button onclick="return validation()">Register</button></label>
+
 	
+	<br><br>
 
 </form>
+</div>
+</div>
 
 </body>
 </html>

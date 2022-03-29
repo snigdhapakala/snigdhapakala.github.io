@@ -26,7 +26,7 @@ label {
 }
 
 #form{
-	margin-right:130px;
+	margin-right:120px;
 	font-size:14pt;
 }
 
@@ -41,28 +41,40 @@ label {
 	font-size:14pt;
 }
 
-#name1{
-	width:500px;
-	padding:4px;
-	font-size:14pt;	
-}
-
 #email1{
 	width:500px;
 	padding:4px;
 	font-size:14pt;	
 }
 
-#subject{
+#email_error{
+	font-size:14pt;
+    font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+}
+
+#password1{
 	width:500px;
 	padding:4px;
 	font-size:14pt;	
 }
 
-#message{
+#password1_error{
+	font-size:14pt;
+    font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
+}
+
+#password2{
 	width:500px;
 	padding:4px;
 	font-size:14pt;	
+}
+
+#password2_error{
+	font-size:14pt;
+    font-family: myFirstFont;
+    src: url('GlacialIndifference-Regular.otf');
 }
 
 button{
