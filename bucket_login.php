@@ -26,7 +26,7 @@ if (!isset($_COOKIE['email1']) && !isset($_COOKIE['password1'])){
 		$input_password = $_POST["password1"];
 		if (array_key_exists($input_email, $pairs)) {
 			if ($input_password === $pairs[$input_email]) {
-				setcookie("email1", $_POST['email1'], time()+10,"/");
+				setcookie("email1", $_POST['email1'], time()+(15*60),"/");
 				readfile("bucket-list.html");
 			} else {
 				echo "<script>alert('Incorrect Password')</script>";
