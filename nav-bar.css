@@ -10,7 +10,6 @@ ul {
 }
 
 .topnav {
-    /* overflow: hidden; */
     overflow: auto;
     width: 100%;
 
@@ -29,24 +28,6 @@ ul {
     width: 18%;
     display: block;
 }
-
-.socials {
-    float: right;
-    padding: 5px;
-}
-
-.topnav img {
-    width: 20px;
-    height: 20px;
-}
-
-.topnav input[type=text] {
-    float: right;
-    width: 10%;
-    border: none;
-    padding: 3px;
-    font-size: 17px;
-  }
 
 /* Change the color of links on hover */
 .topnav a:hover {
