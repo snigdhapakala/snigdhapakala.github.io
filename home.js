@@ -15,3 +15,15 @@ function changeImg() {
 }
 
 myInterval = setInterval(changeImg, 3000)
+
+function toggleMute() {
+
+    var video=document.getElementById("myVideo")
+
+    if(video.muted){
+        video.muted = false;
+    } else {
+        video.muted = true;
+    }
+  
+  }
