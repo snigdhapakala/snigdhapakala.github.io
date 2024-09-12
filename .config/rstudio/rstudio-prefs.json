@@ -1,0 +1,11 @@
+{
+    "save_workspace": "never",
+    "load_workspace": false,
+    "initial_working_directory": "~",
+    "posix_terminal_shell": "bash",
+    "jobs_tab_visibility": "shown",
+    "source_with_echo": true,
+    "document_author": "Snigdha Pakala",
+    "default_project_location": "/Users/snigdhapakala/Downloads/UM Fall 24",
+    "new_proj_git_init": true
+}

@@ -1,0 +1,497 @@
+---
+title: "STATS 506 Problem Set #1"
+author: "Snigdha Pakala"
+editor: visual
+format: html
+---
+
+## Problem 1 - Wine Data
+
+### 1a:
+
+```{r}
+# Loaded in the data set and then created a dataframe
+# Used the wine.names file to see that the first column is the class of the wine, while the rest pertain to the order from the file.
+# Checked to make sure data frame looks good by using head()
+
+wine_file <- read.csv("~/Desktop/STATS506/506_HW1/wine/wine.data", sep=",", header = FALSE)
+
+wine_df <- data.frame(wine_file)
+
+colnames(wine_df) <- c(
+    "Class"
+    , "Alcohol"
+    , "Malic_acid"
+    , "Ash"
+    , "Alcalinity_of_ash"
+    , "Magnesium"
+    , "Total_phenols"
+    , "Flavanoids"
+    , "Nonflavanoid_phenols"
+    , "Proanthocyanins"
+    , "Color_intensity"
+    , "Hue"
+    , "OD280/OD315_of_diluted_wines"
+    , "Proline"
+)
+
+head(wine_df)
+```
+
+### 1b:
+
+```{r}
+# Information from wine.names: 
+# class 1 59
+# class 2 71
+# class 3 48
+
+# Extract data frame class information
+class_values <- table(c(wine_df$Class))
+class_values
+```
+
+Number of wines within each class are as expected!
+
+### 1c:
+
+1.  What is the correlation between alcohol content and color intensity?
+
+    ```{r}
+    alc_col_corr <- cor(wine_df$Alcohol, wine_df$Color_intensity)
+    alc_col_corr
+    ```
+
+2.  Which class has the highest correlation? Which has the lowest?
+
+    ```{r}
+
+    #' Function to create subsets of the dataset based on wine classes
+    #'
+    #' @param n n represents each number for the wine classes
+    #'
+    #' @return dataframe for each class
+    #' @export
+    #'
+    #' @examples
+    class_n <- function(n){
+      return(wine_df[wine_df$Class == n, ])
+    }
+
+    class_1 <- class_n(1)
+
+    class_2 <- class_n(2)
+
+    class_3 <- class_n(3)
+
+    # Compare correlations between alcohol and color intensity within each class
+
+    class_1_corr <- cor(class_1$Alcohol, class_1$Color_intensity)
+    names(class_1_corr) <- "Class 1"
+    class_1_corr
+
+    class_2_corr <- cor(class_2$Alcohol, class_2$Color_intensity)
+    names(class_2_corr) <- "Class 2"
+    class_2_corr
+
+    class_3_corr <- cor(class_3$Alcohol, class_3$Color_intensity)
+    names(class_3_corr) <- "Class 3"
+    class_3_corr
+    ```
+
+    Answer for C2: Class 1 has the highest correlation at .41, while Class 2 has the lowest at .27.
+
+3.  What is the alcohol content of the wine with the highest color intensity?
+
+    ```{r}
+    # Get the index of the highest color intensity value
+    highest_col_ind <- which.max(wine_df$Color_intensity)
+
+    # Plug this index in to find the corresponding alcohol content level
+    highest_col_alc_cont <- wine_df$Alcohol[highest_col_ind]
+
+    highest_col_alc_cont
+    ```
+
+4.  What percentage of wines had a higher content of proanthocyanins compare to ash?
+
+    ```{r}
+    wines_higher_proanths <- subset(wine_df, wine_df$Proanthocyanins > wine_df$Ash)
+
+    # Quick sanity check: 4th column is ash, 10th column is proanthos
+    # all(wines_higher_proanths[,4] < wines_higher_proanths[,10])
+
+    # Calculate the numerator and denominator for the percentage value
+    wines_higher_num <- nrow(wines_higher_proanths)
+
+    wines_higher_denom <- nrow(wine_df)
+
+    # Calculate the percentage
+    wines_higher_per <- (wines_higher_num / wines_higher_denom) * 100
+
+    wines_higher_per
+    ```
+
+Answer for C4: 8.42% of wines had a higher content of proanthocyanins compare to ash.
+
+### 1d:
+
+```{r}
+
+#' Function to create individual data frames per class type (was having an issue with the column names and felt it was easier just to strip the names and reassign them) 
+#'
+#' @param subset this takes in the subset of data I want to send to the function, and keeps it organized between the 3 different classes along with the overall data
+#'
+#' @return a dataframe of average values for variables is returned for the specific subset argument provided
+#' @export
+#'
+#' @examples
+class_average_func <- function(subset){
+  class_i_avgs <- colMeans(subset)
+  names(class_i_avgs) <- NULL
+  # had to ensure the format is appropriate for the final result being concatenated of rows of different class averages, so had to change the dimension:
+  dim(class_i_avgs) <- c(1,14) 
+  class_i_df <- data.frame(class_i_avgs)
+  # reassigned the original variable names
+  colnames(class_i_df) <- colnames(wine_df)
+  return(class_i_df)
+}
+
+class_1_averages <- class_average_func(class_1)
+row.names(class_1_averages) <- "Class 1 Averages"
+class_1_averages
+
+class_2_averages <- class_average_func(class_2)
+row.names(class_2_averages) <- "Class 2 Averages"
+class_2_averages
+
+class_3_averages <- class_average_func(class_3)
+row.names(class_3_averages) <- "Class 3 Averages"
+class_3_averages
+
+overall_averages <- class_average_func(wine_df)
+row.names(overall_averages) <- "Overall Averages"
+overall_averages
+
+# combined all 4 individual 1 x 14 dim data frames using rbind()
+final_avg_df <- overall_averages
+final_avg_df <- rbind(final_avg_df, class_1_averages)
+final_avg_df <- rbind(final_avg_df, class_2_averages)
+final_avg_df <- rbind(final_avg_df, class_3_averages)
+
+# final_avg_df
+```
+
+### 1e:
+
+```{r}
+
+class_1_phenols <- wine_df$Total_phenols[wine_df$Class == 1]
+class_2_phenols <- wine_df$Total_phenols[wine_df$Class == 2]
+class_3_phenols <- wine_df$Total_phenols[wine_df$Class == 3]
+
+t_test_classes_1_2 <- t.test(class_1_phenols, class_2_phenols)
+t_test_classes_1_3 <- t.test(class_1_phenols, class_3_phenols)
+t_test_classes_2_3 <- t.test(class_2_phenols, class_3_phenols)
+
+print("T test between classes 1 and 2: ")
+print(t_test_classes_1_2)
+print("T test between classes 1 and 3: ")
+print(t_test_classes_1_3)
+print("T test between classes 2 and 3: ")
+print(t_test_classes_2_3)
+```
+
+Answer for e (interpretation of these results): The test statistic values suggest that the highest difference in phenol levels between classes occurs between Class 1 and Class 3, with a t-value of 17.12, followed by the difference between Class 1 and Class 2 with a t-value of 7.42, and finally the difference between Class 2 and Class 3 with a t-value of 7.01. These are all statistically significant differences, as the p-values are lower than the default alpha value of 0.05 for all 3 comparisons. Class 1 has the highest values of phenol levels with a mean of 2.84, followed by Class 2 with a mean of 2.26. The lowest values of phenol levels is seen in Class 3, which has a mean of 1.68.
+
+## Problem 2 - **AskAManager.org Data**
+
+### 2a:
+
+```{r}
+
+survey_file <- read.csv("~/Desktop/STATS506/506_HW1/AskAManager.csv", sep=",")
+
+survey_df <- data.frame(survey_file)
+
+# survey_df
+```
+
+### 2b:
+
+```{r}
+# Clean up variable names
+
+colnames(survey_df) <- c(
+  "Observation"
+  , "Timestamp"
+  , "Age"
+  , "Industry"
+  , "Job"
+  , "Job_Notes"
+  , "Annual_Salary"
+  , "Bonus"
+  , "Currency"
+  , "Other_Currency"
+  , "Income_Notes"
+  , "Country"
+  , "US_State"
+  , "City"
+  , "Total_Years_Worked"
+  , "Years_Worked_In_Industry"
+  , "Highest_Level_Of_Education"
+  , "Gender"
+  , "Race"
+)
+
+# survey_df
+```
+
+### 2c:
+
+```{r}
+
+original_row_count <- nrow(survey_df)
+
+survey_df <- survey_df[survey_df$Currency == "USD", ]
+
+usd_row_count <- nrow(survey_df)
+
+cat("Original row count:", original_row_count, "\n")
+cat("Row count of observations of USD currency:", usd_row_count)
+```
+
+### 2d:
+
+```{r}
+# Note to instructor team: I apologize in advance for this cumbersome code, I tried to figure out the factor object in R but struggled, causing me to go with this inefficient route. 
+
+# Created upper and lower separate variables to break up age range
+min_age <- c("18-24" = 18, "25-34" = 25, "35-44" = 35, 
+             "45-54" = 45, "55-64" = 55, "65 or over" = 65)
+
+max_age <- c("18-24" = 24, "25-34" = 34, "35-44" = 44, 
+             "45-54" = 54, "55-64" = 64, "65 or over" = 100)
+
+# Added above two objects into dataframe to break up the Age column into mins and maxes
+survey_df$min_age <- min_age[survey_df$Age]
+survey_df$max_age <- max_age[survey_df$Age]
+
+# Added 2 columns that constrain the age since we are assuming 18 is the earliest one can work.
+survey_df$min_with_constraint <- survey_df$min_age - 18
+survey_df$max_with_constraint <- survey_df$max_age - 18
+
+# Created min and max variables to break up the range in the "Total_Years_Worked" column
+min_total_years <- c("1 year or less" = 0, "2 - 4 years" = 2, 
+                     "5-7 years" = 5, "8 - 10 years" = 8, 
+                     "11 - 20 years" = 11, "21 - 30 years" = 21,
+                     "31 - 40 years" = 31, "41 years or more" = 41)
+
+max_total_years <- c("1 year or less" = 1, "2 - 4 years" = 4, 
+                     "5-7 years" = 7, "8 - 10 years" = 10, 
+                     "11 - 20 years" = 20, "21 - 30 years" = 30,
+                     "31 - 40 years" = 40, "41 years or more" = 82)
+
+# Created min and max variables to break up the range in the "Years_Worked_In_Industry" column
+min_industry_years <- c("1 year or less" = 0, "2 - 4 years" = 2, 
+                     "5-7 years" = 5, "8 - 10 years" = 8, 
+                     "11 - 20 years" = 11, "21 - 30 years" = 21,
+                     "31 - 40 years" = 31, "41 years or more" = 41)
+
+max_industry_years <- c("1 year or less" = 1, "2 - 4 years" = 4, 
+                     "5-7 years" = 7, "8 - 10 years" = 10, 
+                     "11 - 20 years" = 20, "21 - 30 years" = 30,
+                     "31 - 40 years" = 40, "41 years or more" = 82)
+
+# Added all 4 of these to my existing dataframe
+survey_df$min_total_years <- min_total_years[survey_df$Total_Years_Worked]
+survey_df$max_total_years <- max_total_years[survey_df$Total_Years_Worked]
+survey_df$min_industry_years <- min_industry_years[survey_df$Years_Worked_In_Industry]
+survey_df$max_industry_years <- max_industry_years[survey_df$Years_Worked_In_Industry]
+
+# Created a new dataframe with the following logical conditions embedded:
+#   1. min total years worked must be no more than max possible years of experience
+#     i.e. if someone is in the 25-34 age range, they could have worked no more than 34-18 = 16 years. For our dataset to include all PLAUSIBLE observations, this means our min total years worked needs to be <= 16 
+
+#   2. minimum indsutry years must be no more than max total years worked
+#     i.e. if someone has worked 8-10 years, to include all PLAUSIBLE observations, we need to include all observations that have a minimum industry years worked value of <= 10. 
+survey_df_logical <- survey_df[survey_df$min_total_years <= survey_df$max_with_constraint
+                              & survey_df$min_industry_years <= survey_df$max_total_years
+                              , ]
+
+
+cat("We have removed", usd_row_count - nrow(survey_df_logical), "values from our dataset that are not possible observations")
+
+# Sanity check to understand edge cases:
+
+# survey_df_logical[c("Age", "Total_Years_Worked", "Years_Worked_In_Industry", "min_total_years", "max_total_years", "min_industry_years", "max_industry_years", "min_with_constraint", "max_with_constraint")]
+
+```
+
+### 2e:
+
+```{r}
+
+# Exploring:
+unique(survey_df_logical[c("Industry")])
+low_income <- survey_df_logical[survey_df_logical$Annual_Salary <= 10000 , ]
+low_income
+unique(low_income[c("Industry", "Annual_Salary", "Bonus", "Job_Notes")])
+
+
+# Conditions I am setting: 
+# According to the U.S. Department of Labor, the national average minimum wage is 7.25 per hour. Assuming a full time employee earning this minimum wage rate, the annual salary would be 7.25 * 8 hours * 5 weekdays * 4 weeks in a month * 12 months in a year = 13,920.
+
+# I am going to thus assume that any observation with an annual salary of under 10,000 (alotting some of that 13,920 for taxes), has a reported salary too low to be meaningful in this analysis assuming everyone is employed
+
+low_income <- survey_df_logical[survey_df_logical$Annual_Salary <= 10000 , ]
+unique(low_income[c("Industry", "Annual_Salary", "Job_Notes")])
+
+
+# I will now remove these improbable low income observations from my data frame:
+survey_df_logical_income <- survey_df_logical[survey_df_logical$Annual_Salary > 10000 , ]
+# survey_df_logical_income
+
+
+# Next, I will eliminate unreasonably high values from the dataset:
+# First I need to identify these:
+income_desc <- survey_df_logical_income[order(-survey_df_logical_income$Annual_Salary), ]
+# income_desc[c("Industry", "Annual_Salary", "Job_Notes")]
+
+# I find that if the industry listed is Nonprofits, it is unreasonable to have listed a salary of higher than $100,000; maybe there is potential fraudulent activity of pocketing organization money. I will remove these:
+
+survey_df_logical_income <- survey_df_logical_income[-(which(survey_df_logical_income$Annual_Salary > 100000 & survey_df_logical_income$Industry %in% "Nonprofits")), ]
+
+```
+
+## Problem 3 - Palindromic Numbers
+
+### 3a:
+
+```{r}
+#'This function checks if a given positive integer is a palindrome and returns the 
+#' reversed digits.
+#' 
+#' @param x A positive integer
+#' 
+#' @return A list of two elements, "isPalindromic", which will be expressed as a logical value ("TRUE" or "FALSE") indicating if the input by the user is palindromic, and "reversed", which is the input with its digits reversed, ideally proving the palindromic number.
+#' 
+#' @examples
+#'
+#' @error 
+isPalindromic <- function(x) {
+  # Error message to ensure the input is a positive integer
+  if (!is.numeric(x) || x != as.integer(x) || x <= 0) {
+    stop("Invalid input: Please provide a positive integer.")
+  }
+  
+  # Use string manipulation
+  str_x <- as.character(x)
+  reverse_str_x <- paste(rev(unlist(strsplit(str_x, ""))), collapse = "")
+  reverse_num <- as.numeric(reverse_str_x)
+  
+  # Check if the original value matches the reversed value
+  palindromic_check <- (str_x == reverse_str_x)
+  
+  # Account for an input ending in 0 i.e. x = 30. Want to make sure that 0 is reported in the reversal with 03:
+  (if ((x %% 10) != 0) {
+    return(list(isPalindromic = palindromic_check, reversed = reverse_num))
+  } else {
+    message("This value ends in 0. In order for R to accurately perform the function, the reversed number will be in the form of a string to ensure the 0 is a part of the reversal")
+    return(list(isPalindromic = palindromic_check, reversed = reverse_str_x))
+  }
+    )
+}
+```
+
+### 3b:
+
+```{r}
+
+#' This function takes in an inputted positive number and continues incrementing through it till said value satisfies the previous isPalindromic() function.
+#'
+#' @param num A positive integer
+#'
+#' @return The next positive integet after the inputted value that is a palindrome
+#' @export
+#'
+#' @examples
+nextPalindrome <- function(num) {
+   if (!is.numeric(num) || num != as.integer(num) || num <= 0) {
+    stop("Invalid input: Please provide a positive integer.")
+   }
+  
+  next_palindrome <- num + 1
+
+  # Same exact function as above, just without the message about the inputs ending in 0, and without the list being returned including the reversed number.
+  isPalindromic <- function(x) {
+    str_x <- as.character(x)
+    reverse_str_x <- paste(rev(unlist(strsplit(str_x, ""))), collapse = "")
+    reverse_num <- as.numeric(reverse_str_x)
+    palindromic_check <- (str_x == reverse_str_x)
+    return(isPalindromic = palindromic_check)
+  }
+  
+  # Continues going through while loop till isPalindromic(next_palindrome) returns TRUE
+  while (!isPalindromic(next_palindrome)) {
+    next_palindrome <- next_palindrome + 1
+  }
+  
+  return(next_palindrome)
+} 
+```
+
+### 3c:
+
+```{r}
+cat("c part i:", nextPalindrome(391), "\n")
+cat("c part ii:", nextPalindrome(9928), "\n")
+cat("c part iii:", nextPalindrome(19272719), "\n")
+cat("c part iv:", nextPalindrome(109), "\n")
+cat("c part v:", nextPalindrome(2), "\n")
+
+```
+
+Attribution of Sources:
+
+-   Problem 1A/1B: header = FALSE
+
+    -   Source: <https://forum.posit.co/t/column-names-improperly-read-into-r-studio/179723>
+
+    -   For some reason, when I looked at the Class column in my data frame for 1B, I was only seeing 58 observations instead of 59 for class 1.
+
+    -   Through this link, I found out that if I don't specify this, R will by default assume the first row is column names, which explained why I was missing it from my data.
+
+-   Problem 1d: rbind()
+
+    -   Source: <https://www.digitalocean.com/community/tutorials/rbind-function-r>
+
+    -   Didn't know how to combine multiple data frames with the same number of columns in one object, found out how through this source
+
+-   Problem 2c: cat()
+
+    -   Source: <https://www.r-bloggers.com/2022/09/how-to-concatenate-strings-in-r/>
+
+    -   wasn't sure of the syntax to print string and int values together in r, searched it up and found out about the concatenation function "cat" in r
+
+-   Problem 2d: source for external research
+
+    -   Source: <https://www.dol.gov/general/topic/wages/minimumwage#:~:text=The%20federal%20minimum%20wage%20for%20covered%20nonexempt%20employees%20is%20%247.25%20per%20hour.>
+
+-   Problem 2e: sorting in descending order
+
+    -   Source: <https://www.datacamp.com/doc/r/sorting>
+
+    -   I didn't know how to sort my dataframe based on descending values in a specific column, learned about order(x, -col_name) through this source
+
+-   Problem 2e: dropping certain rows based on conditions
+
+    -   Source: <https://stackoverflow.com/questions/75084373/how-to-remove-rows-by-condition-in-r>
+
+    -   Didn't know the syntax for only excluding certain rows that meet more than one condition and including all others, learned it through this page
+
+-   Problem 3a: string manipulation
+
+    -   Source: <https://www.geeksforgeeks.org/r-program-to-check-if-a-string-is-a-palindrome/>
+
+    -   Used this cite to figure out/ confirm string manipulation code
